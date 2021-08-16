@@ -30,3 +30,22 @@ services:
         ports:
             - '8081:8081'
         restart: always
+    frontend:
+      build:
+        context: .
+        dockerfile: ./frontend/internals/docker/Dockerfile
+      command: npm run start
+      environment:
+        - NODE_ENV=localdev
+      ports:
+        - "3000:3000"
+      volumes:
+        - ./frontend/app:/code/app
+        - ./frontend/package.json:/code/package.json
+        - ./frontend/yarn.lock:/code/yarn.lock
+        - ./frontend/server:/code/server
+        - ./frontend/.gitignore:/code/.gitignore
+        - ./frontend/.eslintrc.js:/code/.eslintrc.js
+        - ./frontend/.prettierrc:/code/.prettierrc
+        - ./frontend/.prettierignore:/code/.prettierignore
+        - ./frontend/.stylelintrc:/code/.stylelintrc
