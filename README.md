@@ -1,7 +1,10 @@
-# DOCKER-GO-DEV
+A containerized full statck experiment using react/redux with go. Purpose to familiarize.
 
-## Setting up a local development environment for Go, Mongo (and Mongo Express Client)
+Features:
 
-Find my Dev.to article here:
+Architecture:
 
-https://dev.to/itscosmas/how-to-set-up-a-local-development-workflow-with-docker-for-your-go-apps-with-mongodb-and-mongo-express-f99
+- Mongodb
+- Gin
+- Mongodb
+- react boilerpate with redux
