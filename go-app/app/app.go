@@ -12,6 +12,8 @@ import (
 
 	"go-app/controllers"
 	routes "go-app/routes"
+
+	"github.com/gin-contrib/cors"
 )
 
 var (
@@ -29,6 +31,7 @@ func Run() {
 	}
 
 	r.Use(gin.Logger())
+	r.Use(cors.Default())
 
 	// Set client options
 	// clientOptions := options.Client().ApplyURI(config.MongoDB.URI) // use env variables
