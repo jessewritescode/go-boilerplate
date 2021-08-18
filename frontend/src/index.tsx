@@ -19,17 +19,14 @@ import 'sanitize.css/sanitize.css';
 import { App } from 'app';
 
 import { HelmetProvider } from 'react-helmet-async';
-import { ChakraProvider } from '@chakra-ui/react';
 import { configureAppStore } from 'store/configureStore';
-
-import { ThemeProvider } from 'styles/theme/ThemeProvider';
 
 import reportWebVitals from 'reportWebVitals';
 
 // Initialize languages
 import './locales/i18n';
 
-import theme from './theme';
+import { ThemeProvider } from 'styles/theme/ThemeProvider';
 
 // Observe loading of Inter (to remove 'Inter', remove the <link> tag in
 // the index.html file and this observer)
@@ -46,13 +43,11 @@ const MOUNT_NODE = document.getElementById('root') as HTMLElement;
 ReactDOM.render(
   <Provider store={store}>
     <ThemeProvider>
-      <ChakraProvider theme={theme}>
-        <HelmetProvider>
-          <React.StrictMode>
-            <App />
-          </React.StrictMode>
-        </HelmetProvider>
-      </ChakraProvider>
+      <HelmetProvider>
+        <React.StrictMode>
+          <App />
+        </React.StrictMode>
+      </HelmetProvider>
     </ThemeProvider>
   </Provider>,
   MOUNT_NODE,
