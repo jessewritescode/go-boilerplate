@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
   FormControl,
@@ -29,6 +30,7 @@ export function LoginForm(props: Props) {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
+  let history = useHistory();
   const { actions } = useSessionSlice();
   const hasBadPassword = useSelector(selectBadPassword);
 
@@ -40,7 +42,7 @@ export function LoginForm(props: Props) {
     resolver: yupResolver(schema),
   });
   const onSubmit = (data: { email: string; password: string }) => {
-    dispatch(actions.login(data));
+    dispatch(actions.login({ ...data, history }));
   };
 
   return (

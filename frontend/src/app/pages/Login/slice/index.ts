@@ -14,7 +14,14 @@ const slice = createSlice({
   name: 'session',
   initialState,
   reducers: {
-    login(state, action: PayloadAction<{ email: string; password: string }>) {
+    login(
+      state,
+      action: PayloadAction<{
+        email: string;
+        password: string;
+        history: any;
+      }>,
+    ) {
       state.error = false;
       state.errorCode = LoginErrorCodes.NONE;
     },
