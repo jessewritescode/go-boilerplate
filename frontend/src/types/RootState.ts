@@ -1,5 +1,5 @@
 import { ThemeState } from 'styles/theme/slice/types';
-import { SessionState } from 'app/pages/Login/slice/types';
+import { SessionState } from 'session/slice/types';
 // [IMPORT NEW CONTAINERSTATE ABOVE] < Needed for generating containers seamlessly
 
 /*

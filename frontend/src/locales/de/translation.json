@@ -24,5 +24,18 @@
     "email": "Email",
     "submit": "Submit",
     "incorrectPassword": "Incorrect username or password."
+  },
+  "routeNotFound": {
+    "title": "Page not found",
+    "subtitle": "Where could it be now?"
+  },
+  "Signup": {
+    "email": "Email address",
+    "password": "Password",
+    "confirmPassword": "Confirm password",
+    "phone": "Phone",
+    "signup": "Signup",
+    "submit": "Signup",
+    "passwordsMustMatch": "Passwords must match"
   }
 }

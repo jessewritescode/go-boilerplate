@@ -1,13 +1,14 @@
 import { PayloadAction } from '@reduxjs/toolkit';
+import { getTokenFromStorage } from 'session/utils';
 import { createSlice } from 'utils/@reduxjs/toolkit';
 import { useInjectReducer, useInjectSaga } from 'utils/redux-injectors';
 import { sessionSaga } from './saga';
-import { SessionState, LoginErrorCodes } from './types';
+import { SessionState, LoginStatus } from './types';
 
 export const initialState: SessionState = {
   error: false,
-  errorCode: LoginErrorCodes.NONE,
-  token: '',
+  loginStatus: getTokenFromStorage() ? LoginStatus.LOGGED_IN : LoginStatus.NONE,
+  token: getTokenFromStorage() || '',
 };
 
 const slice = createSlice({
@@ -23,16 +24,16 @@ const slice = createSlice({
       }>,
     ) {
       state.error = false;
-      state.errorCode = LoginErrorCodes.NONE;
+      state.loginStatus = LoginStatus.NONE;
     },
     loginSuccess(state, action: PayloadAction<{ token: string }>) {
       state.error = false;
-      state.errorCode = LoginErrorCodes.NONE;
+      state.loginStatus = LoginStatus.LOGGED_IN;
       state.token = action.payload.token;
     },
-    loginError(state, action: PayloadAction<LoginErrorCodes>) {
+    loginError(state, action: PayloadAction<LoginStatus>) {
       state.error = true;
-      state.errorCode = action.payload;
+      state.loginStatus = action.payload;
     },
   },
 });
@@ -44,15 +45,3 @@ export const useSessionSlice = () => {
   useInjectSaga({ key: slice.name, saga: sessionSaga });
   return { actions: slice.actions };
 };
-
-/**
- * Example Usage:
- *
- * export function MyComponentNeedingThisSlice() {
- *  const { actions } = useSessionSlice();
- *
- *  const onButtonClick = (evt) => {
- *    dispatch(actions.someAction());
- *   };
- * }
- */

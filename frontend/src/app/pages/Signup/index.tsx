@@ -1,13 +1,16 @@
+/**
+ *
+ * Signup
+ *
+ */
 import * as React from 'react';
 import { FullscreenBackground } from 'app/components/FullscreenBackground';
 import { Box } from '@chakra-ui/react';
-import { LoginForm } from './components/LoginForm';
+import { SignupForm } from './components/SignupForm';
 
 interface Props {}
 
-export function Login(props: Props) {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-
+export function Signup(props: Props) {
   return (
     <FullscreenBackground>
       <Box
@@ -18,7 +21,7 @@ export function Login(props: Props) {
         bgColor="white"
         p={6}
       >
-        <LoginForm />
+        <SignupForm />
       </Box>
     </FullscreenBackground>
   );

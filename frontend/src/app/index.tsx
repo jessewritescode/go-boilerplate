@@ -9,13 +9,17 @@
 import * as React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Switch, Route, BrowserRouter } from 'react-router-dom';
-
 import { useTranslation } from 'react-i18next';
+import { useSessionSlice } from 'session/slice/index';
 import { Login } from './pages/Login/Loadable';
 import { Home } from './pages/Home/Loadable';
+import { RouteNotFound } from './pages/RouteNotFound/Loadable';
+import { Signup } from './pages/Signup/Loadable';
 
 export function App() {
   const { i18n } = useTranslation();
+  useSessionSlice();
+
   return (
     <BrowserRouter>
       <Helmet
@@ -28,9 +32,10 @@ export function App() {
 
       <Switch>
         <Route exact path={process.env.PUBLIC_URL + '/'} component={Login} />
-        <Route path="/login" component={Login} />
         <Route path="/home" component={Home} />
-        <Route component={Login} />
+        <Route path="/login" component={Login} />
+        <Route path="/signup" component={Signup} />
+        <Route component={RouteNotFound} />
       </Switch>
     </BrowserRouter>
   );

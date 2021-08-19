@@ -1,11 +1,12 @@
 /* --- STATE --- */
 export interface SessionState {
   error: boolean;
-  errorCode: LoginErrorCodes;
+  loginStatus: LoginStatus;
   token: string;
 }
 
-export enum LoginErrorCodes {
+export enum LoginStatus {
   NONE = 0,
-  BAD_PASSWORD = 1,
+  LOGGED_IN = 1,
+  BAD_PASSWORD = 2,
 }

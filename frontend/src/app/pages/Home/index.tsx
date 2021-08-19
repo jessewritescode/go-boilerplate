@@ -6,10 +6,11 @@
 import * as React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
-import { Box, Flex, Heading, Text } from '@chakra-ui/react';
+import { Box, Heading, Text } from '@chakra-ui/react';
+import { FullscreenBackground } from 'app/components/FullscreenBackground';
 import { messages } from './messages';
-import { useSessionSlice } from '../Login/slice';
-import { selectToken } from '../Login/slice/selectors';
+import { useSessionSlice } from '../../../session/slice';
+import { selectToken } from '../../../session/slice/selectors';
 
 interface Props {}
 
@@ -20,14 +21,7 @@ export function Home(props: Props) {
   const token = useSelector(selectToken);
 
   return (
-    <Flex
-      w="100%"
-      h="100vh"
-      direction="column"
-      align="center"
-      justify="center"
-      bgGradient="linear(to-r, green.200, pink.500)"
-    >
+    <FullscreenBackground>
       <Box
         w="md"
         borderWidth="1px"
@@ -39,6 +33,6 @@ export function Home(props: Props) {
         <Heading as="h3">Your session token, sir:</Heading>
         <Text>{token}</Text>
       </Box>
-    </Flex>
+    </FullscreenBackground>
   );
 }

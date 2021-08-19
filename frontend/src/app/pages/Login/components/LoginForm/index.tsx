@@ -16,8 +16,12 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { translations } from 'locales/translations';
-import { useSessionSlice } from '../../slice/index';
-import { selectBadPassword } from '../../slice/selectors';
+import { useSessionSlice } from '../../../../../session/slice/index';
+import {
+  selectBadPassword,
+  selectToken,
+} from '../../../../../session/slice/selectors';
+import { saveTokenInLocalStorage } from 'session/utils';
 
 interface Props {}
 
@@ -33,6 +37,7 @@ export function LoginForm(props: Props) {
   let history = useHistory();
   const { actions } = useSessionSlice();
   const hasBadPassword = useSelector(selectBadPassword);
+  const token = useSelector(selectToken);
 
   const {
     register,
@@ -44,6 +49,13 @@ export function LoginForm(props: Props) {
   const onSubmit = (data: { email: string; password: string }) => {
     dispatch(actions.login({ ...data, history }));
   };
+
+  React.useEffect(() => {
+    if (token) {
+      saveTokenInLocalStorage(token);
+      history.push('/home');
+    }
+  }, [token, history]);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
